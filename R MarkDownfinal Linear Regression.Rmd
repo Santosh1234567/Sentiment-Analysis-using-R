@@ -1,0 +1,58 @@
+---
+title: "Co-relation and Co-variance"
+author: "Santosh Bommaraju"
+date: "November 24, 2015"
+output: html_document
+---
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+#Co-relation and Co-Variance
+```{r}
+data()
+data(Cars93,package="MASS")
+str(Cars93) #describes about the dataset Cars93
+
+plot(Cars93$MPG.city,log( Cars93$Price))
+cor(Cars93$MPG.city, Cars93$Price)
+```
+
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+plot()
+cor(Cars_new)
+str(Cars93)
+names(Cars93)
+Cars_new<- Cars93[,c(4,6,12,17)]
+fit<- lm(Price~.,data=Cars_new)
+fit
+summary(fit)
+Cars_new$predicted_price <- predict(fit,Cars_new)
+View(Cars_new)
+
+hist(Cars_new$Price-cars_new$predicted_price)
+plot(Cars_new$Price-Cars_new$predicted_price, Cars_new$predicted_price)
+cor(Cars_new$Price-Cars_new$predicted_price)
+step(fit)
+
+```
+#Sample data for Train and Test
+```{r}
+nrow(Cars93)
+sample(Cars93,10,replace = FALSE)
+data()
+  data("Adult")
+  nrow(Adult)
+  ## Sample with replacement
+s<- sample(Adult, nrow(Adult)*0.6, replace = FALSE)
+s
+nrow(s)
+```
+
